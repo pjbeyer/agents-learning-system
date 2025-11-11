@@ -1,0 +1,52 @@
+{
+  "hierarchyLevels": {
+    "global": "/Users/pjbeyer/Projects/docs/continuous-improvement/learnings",
+    "profile": "{profilePath}/docs/continuous-improvement/learnings",
+    "project": "{projectPath}/docs/continuous-improvement/learnings",
+    "agent": "{agentPath}/docs/learnings"
+  },
+  "categories": {
+    "global": [
+      "mcp-patterns",
+      "workflows",
+      "agents",
+      "documentation"
+    ],
+    "profile": [
+      "tools",
+      "patterns",
+      "optimizations",
+      "integrations"
+    ],
+    "project": [
+      "architecture",
+      "implementation",
+      "testing",
+      "deployment"
+    ],
+    "agent": [
+      "capabilities",
+      "integrations",
+      "improvements"
+    ]
+  },
+  "logFiles": {
+    "global": {
+      "agentImprovements": "/Users/pjbeyer/Projects/docs/continuous-improvement/agent-improvements.md",
+      "mcpPatterns": "/Users/pjbeyer/Projects/docs/continuous-improvement/mcp-pattern-discoveries.md",
+      "workflowOptimizations": "/Users/pjbeyer/Projects/docs/continuous-improvement/workflow-optimizations.md",
+      "documentationOpportunities": "/Users/pjbeyer/Projects/docs/continuous-improvement/template-opportunities.md"
+    },
+    "profile": {
+      "learningLog": "{profilePath}/docs/continuous-improvement/learning-log.md"
+    }
+  },
+  "profiles": [
+    "pjbeyer",
+    "work",
+    "play",
+    "home"
+  ],
+  "closedLoopMarker": "✅ CLOSED LOOP",
+  "fileFormat": "YYYY-MM-DD-descriptive-topic.md"
+}
