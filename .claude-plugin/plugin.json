@@ -7,49 +7,6 @@
     "email": "6152278+pjbeyer@users.noreply.github.com"
   },
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/pjbeyer/agents-learning-system"
-  },
-  "skills": {
-    "capture-learning": {
-      "description": "Capture a learning with metadata, storage, and documentation updates",
-      "path": "./skills/capture-learning.md"
-    },
-    "apply-learning": {
-      "description": "Implement a captured learning with closed-loop verification",
-      "path": "./skills/apply-learning.md"
-    }
-  },
-  "commands": {
-    "learn": {
-      "description": "Capture a learning (invokes capture-learning skill)",
-      "path": "./commands/learn.md"
-    },
-    "implement-learnings": {
-      "description": "Apply captured learnings (invokes apply-learning skill)",
-      "path": "./commands/implement-learnings.md"
-    }
-  },
-  "scripts": {
-    "find-learnings": {
-      "description": "Find and analyze learning files across profiles",
-      "path": "./scripts/find-learnings.sh"
-    }
-  },
-  "config": {
-    "storage-structure": {
-      "path": "./config/storage-structure.json"
-    }
-  },
-  "hooks": {
-    "LearningCaptured": {
-      "description": "Triggered when new learning is captured",
-      "subscribers": []
-    },
-    "LearningImplemented": {
-      "description": "Triggered when learning is implemented",
-      "subscribers": []
-    }
-  }
+  "repository": "https://github.com/pjbeyer/agents-learning-system",
+  "keywords": ["learning", "continuous-improvement", "closed-loop", "hierarchical"]
 }
