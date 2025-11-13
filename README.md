@@ -1,6 +1,6 @@
 # agents-learning-system
 
-A Claude Code plugin for capturing, tracking, and implementing learnings with hierarchical storage and closed-loop tracking across profiles.
+Capture and implement learnings with hierarchical storage and closed-loop tracking.
 
 ## Features
 
@@ -12,59 +12,41 @@ A Claude Code plugin for capturing, tracking, and implementing learnings with hi
 
 ## Installation
 
-### Option 1: Via agents-marketplace (Recommended)
-
 ```bash
-# Add the marketplace
 /plugin marketplace add pjbeyer/agents-marketplace
-
-# Install the plugin
 /plugin install agents-learning-system@agents-marketplace
-```
-
-### Option 2: Direct Installation
-
-```bash
-# Add marketplace directly to this repo
-/plugin marketplace add pjbeyer/agents-learning-system
-
-# Install
-/plugin install agents-learning-system@agents-learning-system
 ```
 
 ## Commands
 
 ### `/learn`
 
-Capture a new learning at the appropriate hierarchy level.
+Capture a learning at the appropriate hierarchy level.
 
-**Usage**:
 ```bash
 /learn
 ```
 
-The command will:
-1. Detect your current hierarchy level
-2. Guide you through the learning capture process
-3. Update documentation FIRST (closes the loop immediately)
-4. Create the learning file with proper metadata
-5. Verify correct file location
+The command:
+1. Detects current hierarchy level
+2. Updates documentation first
+3. Creates learning file with metadata
+4. Verifies correct location
 
 ### `/implement-learnings`
 
-Review and implement captured learnings across all profiles.
+Implement captured learnings across profiles.
 
-**Usage**:
 ```bash
 /implement-learnings
 ```
 
-The command will:
-1. Find all unimplemented learnings
-2. Identify cross-profile patterns
-3. Update documentation
-4. Mark learnings as implemented
-5. Extract patterns to appropriate levels
+The command:
+1. Finds unimplemented learnings
+2. Identifies cross-profile patterns
+3. Updates documentation
+4. Marks learnings complete
+5. Extracts patterns to appropriate levels
 
 ## Hierarchy Levels
 
@@ -89,25 +71,12 @@ Agent-specific capabilities and improvements
 
 **Categories**: `capabilities`, `integrations`, `improvements`
 
-## Key Principles
+## Principles
 
-### 1. Documentation-First Approach
-Always update documentation BEFORE creating the learning file. This closes the feedback loop immediately.
-
-### 2. Closed-Loop Tracking
-Every learning must be marked with `✅ CLOSED LOOP` when implemented, including:
-- What documentation was updated
-- How the implementation was verified
-- Cross-references to related learnings
-
-### 3. Hierarchical Organization
-Store learnings at the appropriate level:
-- **Too broad?** Move to higher level
-- **Too narrow?** Move to lower level
-- **Cross-cutting?** Extract to shared documentation
-
-### 4. Cross-Profile Patterns
-Identify patterns appearing in multiple profiles and extract to global documentation.
+1. **Documentation first** - Update docs before creating learning files
+2. **Closed-loop tracking** - Mark learnings complete with verification
+3. **Hierarchical organization** - Store at appropriate level
+4. **Cross-profile patterns** - Extract common patterns to global docs
 
 ## Scripts
 
@@ -158,14 +127,6 @@ Configuration is stored in `config/storage-structure.json`:
   "closedLoopMarker": "✅ CLOSED LOOP"
 }
 ```
-
-## Evidence of Value
-
-Based on actual usage:
-- **31 existing learning files** (1 global, 7 pjbeyer, 23 work)
-- **97% closed-loop rate** (30/31 implemented)
-- **Used across all profiles**
-- **Proven pattern for continuous improvement**
 
 ## Skills
 
@@ -221,16 +182,8 @@ agents-learning-system/
 
 ## License
 
-MIT License - see LICENSE file for details
-
-## Author
-
-Paul Beyer <paul@pjbeyer.com>
+MIT License
 
 ## Repository
 
 https://github.com/pjbeyer/agents-learning-system
-
-## Version
-
-1.0.0
