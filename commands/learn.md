@@ -4,7 +4,7 @@ Capture a learning with metadata, storage, and documentation updates.
 
 ## Invocation
 
-This command invokes the `capture-learning` skill from the agents-learning-system plugin.
+Use and follow the `capture-learning` skill exactly as written.
 
 ## Usage
 

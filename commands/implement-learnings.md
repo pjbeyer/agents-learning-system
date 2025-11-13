@@ -4,7 +4,7 @@ Systematically review and implement captured learnings across all hierarchy leve
 
 ## Invocation
 
-This command invokes the `apply-learning` skill from the agents-learning-system plugin.
+Use and follow the `apply-learning` skill exactly as written.
 
 ## Usage
 
