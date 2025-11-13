@@ -48,5 +48,54 @@
     "home"
   ],
   "closedLoopMarker": "✅ CLOSED LOOP",
-  "fileFormat": "YYYY-MM-DD-descriptive-topic.md"
+  "fileFormat": "YYYY-MM-DD-descriptive-topic.md",
+  "priorities": {
+    "P0": {
+      "label": "Blocking",
+      "description": "Can't proceed - must fix immediately",
+      "examples": ["Command broken", "Security vulnerability", "Data loss risk"]
+    },
+    "P1": {
+      "label": "Urgent",
+      "description": "Workaround exists - fix within 1 hour",
+      "examples": ["Feature partially broken", "Performance degraded", "Clunky workaround"]
+    },
+    "P2": {
+      "label": "High",
+      "description": "Can proceed - fix today",
+      "examples": ["Enhancement blocks future work", "Quality issue", "Tech debt"]
+    },
+    "P3": {
+      "label": "Medium",
+      "description": "Can proceed - fix this week",
+      "examples": ["Nice-to-have improvement", "Optimization", "Documentation gap"]
+    },
+    "P4": {
+      "label": "Low",
+      "description": "Can proceed - fix when convenient",
+      "examples": ["Minor enhancement", "Cosmetic", "Future consideration"]
+    }
+  },
+  "statuses": [
+    "open",
+    "in-progress",
+    "testing",
+    "blocked",
+    "closed"
+  ],
+  "impactLevels": ["high", "medium", "low"],
+  "effortLevels": ["high", "medium", "low"],
+  "commonTags": {
+    "mcp-patterns": ["mcp", "tool", "api", "integration", "query"],
+    "workflows": ["workflow", "process", "automation", "optimization"],
+    "agents": ["agent", "skill", "command", "plugin"],
+    "documentation": ["docs", "readme", "guide", "template"],
+    "architecture": ["architecture", "structure", "design", "config"],
+    "tools": ["cli", "script", "utility", "helper"],
+    "patterns": ["pattern", "best-practice", "standard"],
+    "optimizations": ["performance", "efficiency", "token-usage"],
+    "integrations": ["integration", "sync", "connect"],
+    "capabilities": ["feature", "capability", "enhancement"],
+    "improvements": ["improvement", "refactor", "cleanup"]
+  }
 }

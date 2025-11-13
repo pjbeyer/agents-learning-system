@@ -107,7 +107,88 @@ Based on the learning content, choose appropriate category from configuration.
 - Agent enhancement → `agents`
 - Documentation structure → `documentation`
 
-### Step 6: Create Learning File
+### Step 6: Gather Metadata (NEW - Phase 1 Enhancement)
+
+**Load priorities from config**:
+```bash
+cat /Users/pjbeyer/.claude/plugins/cache/agents-learning-system/config/storage-structure.json | grep -A 20 '"priorities"'
+```
+
+#### 6a. Ask: Priority
+
+**Question**: "How urgent is this learning?"
+
+**Options** (show with descriptions):
+- **P0 - Blocking**: Can't proceed - must fix immediately
+  - Examples: Command broken, security vulnerability, data loss risk
+- **P1 - Urgent**: Workaround exists - fix within 1 hour
+  - Examples: Feature partially broken, performance degraded
+- **P2 - High**: Can proceed - fix today
+  - Examples: Enhancement blocks future work, quality issue
+- **P3 - Medium**: Can proceed - fix this week (DEFAULT)
+  - Examples: Nice-to-have improvement, optimization
+- **P4 - Low**: Can proceed - fix when convenient
+  - Examples: Minor enhancement, cosmetic improvement
+
+**Default**: P3 if user unsure
+
+#### 6b. Ask: Impact
+
+**Question**: "What's the impact of this learning?"
+
+**Options**:
+- **high**: Affects multiple areas, significant improvement
+- **medium**: Affects specific area, moderate improvement (DEFAULT)
+- **low**: Minor improvement, limited scope
+
+**Default**: medium
+
+#### 6c. Ask: Effort
+
+**Question**: "How much effort to implement?"
+
+**Options**:
+- **high**: Multiple hours, complex changes
+- **medium**: 1-2 hours, moderate complexity (DEFAULT)
+- **low**: <1 hour, simple changes
+
+**Default**: medium
+
+#### 6d. Ask: Tags
+
+**Question**: "Add tags for this learning? (comma-separated)"
+
+**Show common tags** based on category from config:
+- If category is `mcp-patterns`: Suggest `mcp, tool, api, integration, query`
+- If category is `workflows`: Suggest `workflow, process, automation, optimization`
+- If category is `agents`: Suggest `agent, skill, command, plugin`
+- etc.
+
+**User enters**: comma-separated tags or presses enter for suggestions
+
+**Default**: Use suggested tags if user presses enter
+
+**Example**:
+```
+Tags for this learning? (suggested: mcp, tool, api)
+> skill-invocation, commands
+
+Result: ["skill-invocation", "commands"]
+```
+
+#### 6e. Set Initial Status
+
+**Status**: Always start as `open`
+
+**Metadata collected**:
+- Priority: P0-P4
+- Impact: high/medium/low
+- Effort: high/medium/low
+- Tags: array of strings
+- Status: open
+- Date: today's date
+
+### Step 7: Create Learning File
 
 **File path format**:
 ```
@@ -123,39 +204,108 @@ Based on the learning content, choose appropriate category from configuration.
 docs/continuous-improvement/learnings/mcp-patterns/2025-11-11-topic.md
 ```
 
-**Template**:
+**Template** (NEW - Phase 1 Enhanced Format):
 ```markdown
-## [Date] - [Category]: [Brief Title]
+---
+# Required metadata
+date: YYYY-MM-DD
+title: Brief descriptive title
+category: mcp-patterns|workflows|agents|documentation|architecture|etc
 
-**Context**: [What task were you performing?]
-**Document Root**: [Absolute path to hierarchy level]
-**Level**: [Global|Profile|Project|Agent]
+# Triage metadata (Phase 1)
+priority: P0|P1|P2|P3|P4
+status: open|in-progress|testing|blocked|closed
+tags: [tag1, tag2, tag3]
 
-**Discovery**:
-[What you learned - be specific]
+# Impact assessment
+impact: high|medium|low
+effort: high|medium|low
 
-**Root Cause** (if error):
-[Why did this happen?]
+# Tracking
+opened_date: YYYY-MM-DD
+hierarchy_level: global|profile|project|agent
+document_root: /absolute/path/to/level
 
-**Impact**:
-[How this affects work at this level]
+# Optional (for future phases)
+batch: false
+plugin: plugin-name (if applicable)
+github_issue: (Phase 7)
+jira_ticket: (Phase 7)
+---
 
-**Recommendation**:
-[Specific action to prevent recurrence]
+# [Title]
 
-**Status**: Pending
-**Priority**: [Critical|High|Medium|Low]
+**Date**: {date}
+**Category**: {category}
+**Impact**: {impact} | **Effort**: {effort}
+**Priority**: {priority}
+**Status**: {status}
 
-**Related Documentation Updates** (REQUIRED):
-- [x] Updated: [exact absolute file path]
-- [x] Section: [what was added/changed]
-- [x] Validated: Reading updated docs prevents recurrence
+## Problem
 
-**Related**:
-- Level: [{level}]
-- Files: [related files]
-- Tools: [tools involved]
+[Clear description of the issue or opportunity]
+
+## Discovery Context
+
+[What were you doing when you discovered this?]
+[What task/workflow revealed this learning?]
+
+## Root Cause
+
+[Why does this problem exist?]
+[What's the underlying cause?]
+
+## Proposed Solution
+
+[What's the fix or improvement?]
+[How should this be implemented?]
+
+## Implementation Plan
+
+1. Step 1
+2. Step 2
+3. Step 3
+
+## Testing Plan
+
+- Test case 1
+- Test case 2
+- Test case 3
+
+## Documentation Updates (REQUIRED)
+
+- [ ] Updated: [exact absolute file path]
+- [ ] Section: [what was added/changed]
+- [ ] Validated: Reading updated docs prevents recurrence
+
+## Related
+
+- **Level**: {hierarchy_level}
+- **Document Root**: {document_root}
+- **Files**: [related files]
+- **Tools**: [tools involved]
+- **Tags**: {tags}
+
+## Status
+
+- [ ] Root cause identified
+- [ ] Solution designed
+- [ ] Implementation started
+- [ ] Testing complete
+- [ ] Documentation updated
+- [ ] Merged/Published
+
+✅ CLOSED LOOP (when all checkboxes complete)
 ```
+
+**Key changes in Phase 1**:
+- Added YAML frontmatter with all metadata
+- Priority is now P0-P4 (not Critical/High/Medium/Low)
+- Status field replaces "Pending"
+- Tags array for categorization
+- Impact/Effort fields for prioritization
+- Structured sections for consistency
+- Checklist for tracking progress
 
 ### Step 7: Verify File Location
 
