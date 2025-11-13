@@ -2,6 +2,21 @@
 
 Capture and implement learnings with hierarchical storage and closed-loop tracking.
 
+## Quick Start for New Users
+
+**Pre-approve skills for faster workflow**: Add this to your Claude Code settings to automatically use this plugin's skills without prompting:
+
+```json
+{
+  "approvedSkills": [
+    "agents-learning-system:capture-learning",
+    "agents-learning-system:apply-learning"
+  ]
+}
+```
+
+**Benefits**: Commands like `/learn` will run immediately without asking permission, making learning capture seamless.
+
 ## Features
 
 - **Hierarchical Storage**: Organize learnings at global, profile, project, and agent levels
