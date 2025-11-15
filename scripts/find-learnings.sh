@@ -37,11 +37,11 @@ BASE_DIR="/Users/pjbeyer/Projects"
 # Profile learning directories (using indexed arrays for ordered iteration)
 PROFILE_NAMES=("Global" "pjbeyer" "work" "play" "home")
 declare -A PROFILE_DIRS=(
-    ["Global"]="$BASE_DIR/docs/continuous-improvement/learnings"
-    ["pjbeyer"]="$BASE_DIR/pjbeyer/docs/continuous-improvement/learnings"
-    ["work"]="$BASE_DIR/work/docs/continuous-improvement/learnings"
-    ["play"]="$BASE_DIR/play/docs/continuous-improvement/learnings"
-    ["home"]="$BASE_DIR/home/docs/continuous-improvement/learnings"
+    ["Global"]="$BASE_DIR/.workflow/docs/continuous-improvement/learnings"
+    ["pjbeyer"]="$BASE_DIR/pjbeyer/.workflow/docs/continuous-improvement/learnings"
+    ["work"]="$BASE_DIR/work/.workflow/docs/continuous-improvement/learnings"
+    ["play"]="$BASE_DIR/play/.workflow/docs/continuous-improvement/learnings"
+    ["home"]="$BASE_DIR/home/.workflow/docs/continuous-improvement/learnings"
 )
 
 # Default options
@@ -88,9 +88,13 @@ while [[ $# -gt 0 ]]; do
 done
 
 # Function to check if a file has CLOSED LOOP marker
+# Note: Looks for date-stamped format to avoid false positives from template text
 has_closed_loop() {
     local file="$1"
-    grep -q "✅ CLOSED LOOP" "$file" 2>/dev/null
+    # Match "✅ CLOSED LOOP - 2025-11-15" format (actual implementation)
+    # Must have: "## " header prefix + emoji + " CLOSED LOOP - " + valid date
+    # Avoids matching examples like "## ✅ CLOSED LOOP - [Date]" in documentation
+    grep -qE "^## ✅ CLOSED LOOP - [0-9]{4}-[0-9]{2}-[0-9]{2}" "$file" 2>/dev/null
 }
 
 # Function to find all learning files in a directory
