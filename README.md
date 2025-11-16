@@ -93,6 +93,39 @@ Agent-specific capabilities and improvements
 3. **Hierarchical organization** - Store at appropriate level
 4. **Cross-profile patterns** - Extract common patterns to global docs
 
+### Closed-Loop Marker Standard
+
+**Required format**: `## ✅ CLOSED LOOP - YYYY-MM-DD`
+
+The date format is **mandatory** and must match the regex: `^## ✅ CLOSED LOOP - [0-9]{4}-[0-9]{2}-[0-9]{2}`
+
+**Why date-stamped format?**
+- Avoids false positives from template examples like `## ✅ CLOSED LOOP - [Date]`
+- Provides clear implementation date for tracking
+- Enables automated verification via `find-learnings.sh` script
+- Ensures learning files are only marked closed when actually completed
+
+**Correct examples**:
+- ✅ `## ✅ CLOSED LOOP - 2025-11-16`
+- ✅ `## ✅ CLOSED LOOP - 2025-01-15`
+
+**Incorrect examples** (won't be detected as implemented):
+- ❌ `## ✅ CLOSED LOOP - IMPLEMENTATION COMPLETE` (no date)
+- ❌ `## ✅ CLOSED LOOP - PENDING DOCUMENTATION` (contradicts closed status)
+- ❌ `✅ CLOSED LOOP - 2025-11-16` (missing `##` header prefix)
+- ❌ `## ✅ CLOSED LOOP` (no date)
+
+**For learnings that are NOT yet complete**, use:
+- `## ⏳ OPEN - PENDING IMPLEMENTATION`
+- `## ⏳ OPEN - PENDING DOCUMENTATION`
+- `## ⏳ OPEN - TESTING`
+
+**Only add the CLOSED LOOP marker when**:
+1. All implementation tasks are complete
+2. Documentation has been updated
+3. Verification confirms it works
+4. The specific date of completion is known
+
 ## Scripts
 
 ### `find-learnings.sh`

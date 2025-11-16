@@ -297,16 +297,25 @@ jira_ticket: (Phase 7)
 
 ## Completion Marker
 
+**IMPORTANT**: Do not add this section until implementation is fully complete!
+
 When all checkboxes above are complete, add:
 
-## ✅ CLOSED LOOP - [Date]
+## ✅ CLOSED LOOP - YYYY-MM-DD
+
+**Required format**: Must use actual date (e.g., `2025-11-16`), not placeholder text like `[Date]`.
 
 **Documentation Updated**:
 - [x] File: [exact absolute file path]
 - [x] Section: [what was added/changed]
 - [x] Validated: Reading updated docs prevents recurrence
 
-(Do not add this section until implementation is complete)
+**For incomplete learnings**, use instead:
+- `## ⏳ OPEN - PENDING IMPLEMENTATION`
+- `## ⏳ OPEN - PENDING DOCUMENTATION`
+- `## ⏳ OPEN - TESTING`
+
+**Never use**: `## ✅ CLOSED LOOP - PENDING [anything]` (this is a contradiction!)
 ```
 
 **Key changes in Phase 1**:

@@ -22,7 +22,7 @@ The skill will:
 1. Find all unimplemented learnings across profiles
 2. Identify cross-profile patterns
 3. Update documentation with learnings
-4. Mark learnings as implemented with "✅ CLOSED LOOP"
+4. Mark learnings as implemented with "✅ CLOSED LOOP - YYYY-MM-DD" date-stamped marker
 5. Extract patterns to appropriate hierarchy levels
 
 ## Multi-Profile Search
@@ -44,15 +44,17 @@ The command uses `find-learnings.sh` script which provides:
 
 ## Closed-Loop Tracking
 
-Each implemented learning is marked with:
+Each implemented learning is marked with date-stamped format:
 ```markdown
-## ✅ CLOSED LOOP - [Date]
+## ✅ CLOSED LOOP - YYYY-MM-DD
 
 **Documentation Updated**:
 - [x] File: [exact absolute file path]
 - [x] Section: [what was added/changed]
 - [x] Validated: Reading updated docs prevents recurrence
 ```
+
+**Important**: Date format (YYYY-MM-DD) is mandatory for automated detection by `find-learnings.sh` script. Replace with actual implementation date (e.g., `2025-11-16`), never use placeholder text like `[Date]`.
 
 ## Quarterly Review
 

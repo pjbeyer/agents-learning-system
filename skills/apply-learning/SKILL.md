@@ -36,7 +36,7 @@ Use the `find-learnings.sh` script to discover all learning files:
 
 **Script features**:
 - ✅ Searches across all profiles (global, pjbeyer, work, play, home)
-- ✅ Filters by implementation status (looks for "✅ CLOSED LOOP" marker)
+- ✅ Filters by implementation status (looks for "✅ CLOSED LOOP - YYYY-MM-DD" date-stamped marker)
 - ✅ Handles missing directories gracefully
 - ✅ Provides multiple output formats
 - ✅ Never fails with cryptic errors
@@ -91,10 +91,12 @@ Use the `find-learnings.sh` script to discover all learning files:
 
 ### Step 5: Mark Learning as Implemented
 
+**CRITICAL**: Only add CLOSED LOOP marker when implementation is fully complete!
+
 **Add to the learning file**:
 
 ```markdown
-## ✅ CLOSED LOOP - [Date]
+## ✅ CLOSED LOOP - YYYY-MM-DD
 
 **Documentation Updated**:
 - [x] File: [exact absolute file path]
@@ -102,12 +104,24 @@ Use the `find-learnings.sh` script to discover all learning files:
 - [x] Validated: Reading updated docs prevents recurrence
 
 **Implementation Details**:
-- Date: [YYYY-MM-DD]
+- Date: YYYY-MM-DD (use actual date of implementation)
 - Changes: [summary of what was implemented]
 - Verification: [how you verified it works]
 
 **Status**: Implemented on [date]
 ```
+
+**Important notes**:
+- Replace `YYYY-MM-DD` with actual date (e.g., `2025-11-16`)
+- Date format is mandatory for automated detection by `find-learnings.sh`
+- Never use placeholder text like `[Date]` or `[YYYY-MM-DD]`
+
+**For incomplete learnings**, use instead:
+- `## ⏳ OPEN - PENDING IMPLEMENTATION`
+- `## ⏳ OPEN - PENDING DOCUMENTATION`
+- `## ⏳ OPEN - TESTING`
+
+**Never use**: `## ✅ CLOSED LOOP - PENDING [anything]` (contradiction!)
 
 **Use Edit tool to add this section** (preserves existing content)
 
@@ -218,7 +232,7 @@ The skill searches across all profiles:
 
 - ✅ All unimplemented learnings reviewed
 - ✅ Documentation updated for each learning
-- ✅ "✅ CLOSED LOOP" marker added to learning files
+- ✅ "✅ CLOSED LOOP - YYYY-MM-DD" date-stamped marker added to learning files
 - ✅ Cross-profile patterns extracted appropriately
 - ✅ Verification completed
 - ✅ Related learnings cross-referenced
