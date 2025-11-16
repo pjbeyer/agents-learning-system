@@ -131,8 +131,8 @@ Configuration is stored in `config/storage-structure.json`:
 ```json
 {
   "hierarchyLevels": {
-    "global": "/Users/pjbeyer/Projects/docs/continuous-improvement/learnings",
-    "profile": "{profilePath}/docs/continuous-improvement/learnings",
+    "global": "/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/learnings",
+    "profile": "{profilePath}/.workflow/docs/continuous-improvement/learnings",
     ...
   },
   "categories": {

@@ -1,3 +1,7 @@
+---
+description: Capture a learning with metadata, hierarchical storage, and documentation updates
+---
+
 # Learn - Capture Learning
 
 Capture a learning with metadata, storage, and documentation updates.

@@ -12,8 +12,8 @@ cd ~/Projects
 **Workflow**:
 1. System detects: Global level
 2. Prompts for category: `mcp-patterns`
-3. Updates `/Users/pjbeyer/Projects/docs/mcp/tool-registry.md` with the new pattern
-4. Creates `/Users/pjbeyer/Projects/docs/continuous-improvement/learnings/mcp-patterns/2025-11-11-server-configuration.md`
+3. Updates `/Users/pjbeyer/Projects/.workflow/docs/mcp/tool-registry.md` with the new pattern
+4. Creates `/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/learnings/mcp-patterns/2025-11-11-server-configuration.md`
 5. Verifies file location
 
 **Learning file**:
@@ -35,7 +35,7 @@ Store credentials in profile-specific .env files, reference in .mcp.json
 **Priority**: High
 
 **Related Documentation Updates** (REQUIRED):
-- [x] Updated: /Users/pjbeyer/Projects/docs/mcp/tool-registry.md
+- [x] Updated: /Users/pjbeyer/Projects/.workflow/docs/mcp/tool-registry.md
 - [x] Section: Notion MCP Server Configuration
 - [x] Validated: Reading updated docs prevents hardcoded credentials
 ```
@@ -79,7 +79,7 @@ Total: 33 files (30 implemented, 3 unimplemented)
 === Unimplemented Learnings ===
 
 Global:
-/Users/pjbeyer/Projects/docs/continuous-improvement/learnings/mcp-patterns/2025-11-11-server-configuration.md
+/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/learnings/mcp-patterns/2025-11-11-server-configuration.md
 
 pjbeyer:
 /Users/pjbeyer/Projects/pjbeyer/docs/continuous-improvement/learnings/tools/2025-11-10-client-template.md
@@ -98,7 +98,7 @@ work:
 ## ✅ CLOSED LOOP - 2025-11-11
 
 **Documentation Updated**:
-- [x] File: /Users/pjbeyer/Projects/docs/mcp/tool-registry.md
+- [x] File: /Users/pjbeyer/Projects/.workflow/docs/mcp/tool-registry.md
 - [x] Section: Notion MCP Server Configuration
 - [x] Validated: Pattern prevents hardcoded credentials
 
@@ -128,7 +128,7 @@ Common: Notion MCP usage patterns
 ```
 
 **Action**:
-1. Extract common pattern to `/Users/pjbeyer/Projects/docs/mcp/tool-registry.md`
+1. Extract common pattern to `/Users/pjbeyer/Projects/.workflow/docs/mcp/tool-registry.md`
 2. Note work-specific patterns (Security database) stay in work docs
 3. Note pjbeyer-specific patterns (Client databases) stay in pjbeyer docs
 4. Mark both learning files as implemented with cross-reference
@@ -160,7 +160,7 @@ cd ~/Projects
 ```
 
 **Quarterly summary creation**:
-- Location: `/Users/pjbeyer/Projects/docs/continuous-improvement/quarterly-summaries/2025-Q4-learnings.md`
+- Location: `/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/quarterly-summaries/2025-Q4-learnings.md`
 - Content: Cross-profile insights, patterns extracted, comparisons
 - Action items: Global documentation updates needed
 

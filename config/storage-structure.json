@@ -1,7 +1,7 @@
 {
   "hierarchyLevels": {
-    "global": "/Users/pjbeyer/Projects/docs/continuous-improvement/learnings",
-    "profile": "{profilePath}/docs/continuous-improvement/learnings",
+    "global": "/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/learnings",
+    "profile": "{profilePath}/.workflow/docs/continuous-improvement/learnings",
     "project": "{projectPath}/docs/continuous-improvement/learnings",
     "agent": "{agentPath}/docs/learnings"
   },
@@ -32,13 +32,13 @@
   },
   "logFiles": {
     "global": {
-      "agentImprovements": "/Users/pjbeyer/Projects/docs/continuous-improvement/agent-improvements.md",
-      "mcpPatterns": "/Users/pjbeyer/Projects/docs/continuous-improvement/mcp-pattern-discoveries.md",
-      "workflowOptimizations": "/Users/pjbeyer/Projects/docs/continuous-improvement/workflow-optimizations.md",
-      "documentationOpportunities": "/Users/pjbeyer/Projects/docs/continuous-improvement/template-opportunities.md"
+      "agentImprovements": "/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/agent-improvements.md",
+      "mcpPatterns": "/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/mcp-pattern-discoveries.md",
+      "workflowOptimizations": "/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/workflow-optimizations.md",
+      "documentationOpportunities": "/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/template-opportunities.md"
     },
     "profile": {
-      "learningLog": "{profilePath}/docs/continuous-improvement/learning-log.md"
+      "learningLog": "{profilePath}/.workflow/docs/continuous-improvement/learning-log.md"
     }
   },
   "profiles": [

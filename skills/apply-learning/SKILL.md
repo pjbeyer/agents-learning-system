@@ -58,7 +58,7 @@ Use the `find-learnings.sh` script to discover all learning files:
 
 **Based on hierarchy level**:
 
-**Global level** (`/Users/pjbeyer/Projects/docs/`):
+**Global level** (`/Users/pjbeyer/Projects/.workflow/docs/`):
 - MCP patterns → `docs/mcp/tool-registry.md`
 - Profile structure → `AGENTS.md`
 - Git/system config → `docs/setup/`
@@ -130,7 +130,7 @@ Pattern found in:
 Common: Notion MCP usage patterns
 
 Action:
-1. Extract common pattern to /Users/pjbeyer/Projects/docs/mcp/tool-registry.md
+1. Extract common pattern to /Users/pjbeyer/Projects/.workflow/docs/mcp/tool-registry.md
 2. Note profile-specific patterns stay in profile docs
 3. Mark both learning files as implemented with cross-reference
 ```
@@ -170,11 +170,11 @@ If the hierarchy level maintains aggregated log files, update them:
 
 The skill searches across all profiles:
 
-1. **Global**: `/Users/pjbeyer/Projects/docs/continuous-improvement/learnings/`
-2. **pjbeyer**: `/Users/pjbeyer/Projects/pjbeyer/docs/continuous-improvement/learnings/`
-3. **work**: `/Users/pjbeyer/Projects/work/docs/continuous-improvement/learnings/`
-4. **play**: `/Users/pjbeyer/Projects/play/docs/continuous-improvement/learnings/`
-5. **home**: `/Users/pjbeyer/Projects/home/docs/continuous-improvement/learnings/`
+1. **Global**: `/Users/pjbeyer/Projects/.workflow/docs/continuous-improvement/learnings/`
+2. **pjbeyer**: `/Users/pjbeyer/Projects/pjbeyer/.workflow/docs/continuous-improvement/learnings/`
+3. **work**: `/Users/pjbeyer/Projects/work/.workflow/docs/continuous-improvement/learnings/`
+4. **play**: `/Users/pjbeyer/Projects/play/.workflow/docs/continuous-improvement/learnings/`
+5. **home**: `/Users/pjbeyer/Projects/home/.workflow/docs/continuous-improvement/learnings/`
 
 ## Best Practices
 

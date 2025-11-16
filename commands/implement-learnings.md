@@ -1,3 +1,7 @@
+---
+description: Systematically review and implement captured learnings across hierarchy levels with closed-loop tracking
+---
+
 # Implement Learnings - Apply Captured Learnings
 
 Systematically review and implement captured learnings across all hierarchy levels with proper closed-loop tracking.
