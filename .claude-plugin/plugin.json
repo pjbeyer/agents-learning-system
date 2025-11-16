@@ -1,6 +1,6 @@
 {
   "name": "agents-learning-system",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Capture, track, and implement learnings with hierarchical storage and closed-loop tracking across profiles",
   "author": {
     "name": "Phil Beyer",
