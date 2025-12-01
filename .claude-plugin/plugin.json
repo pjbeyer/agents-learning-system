@@ -1,12 +1,12 @@
 {
-  "name": "agents-learning-system",
-  "version": "1.0.3",
+  "name": "phil-ai-learning",
+  "version": "1.1.0",
   "description": "Capture, track, and implement learnings with hierarchical storage and closed-loop tracking across profiles",
   "author": {
     "name": "Phil Beyer",
     "email": "6152278+pjbeyer@users.noreply.github.com"
   },
   "license": "MIT",
-  "repository": "https://github.com/pjbeyer/agents-learning-system",
+  "repository": "https://github.com/pjbeyer/phil-ai-learning",
   "keywords": ["learning", "continuous-improvement", "closed-loop", "hierarchical"]
 }

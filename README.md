@@ -1,4 +1,4 @@
-# agents-learning-system
+# phil-ai-learning
 
 Capture and implement learnings with hierarchical storage and closed-loop tracking.
 
@@ -9,8 +9,8 @@ Capture and implement learnings with hierarchical storage and closed-loop tracki
 ```json
 {
   "approvedSkills": [
-    "agents-learning-system:capture-learning",
-    "agents-learning-system:apply-learning"
+    "phil-ai-learning:capture-learning",
+    "phil-ai-learning:apply-learning"
   ]
 }
 ```
@@ -28,8 +28,8 @@ Capture and implement learnings with hierarchical storage and closed-loop tracki
 ## Installation
 
 ```bash
-/plugin marketplace add pjbeyer/agents-marketplace
-/plugin install agents-learning-system@agents-marketplace
+/plugin marketplace add pjbeyer/phil-ai
+/plugin install phil-ai-learning@phil-ai
 ```
 
 ## Commands
@@ -188,7 +188,7 @@ Core skill for implementing learnings and closing the loop with verification.
 
 ### Structure
 ```
-agents-learning-system/
+phil-ai-learning/
 ├── .claude-plugin/
 │   └── plugin.json           # Plugin manifest
 ├── skills/
@@ -214,7 +214,7 @@ agents-learning-system/
 {
   "name": "dev",
   "plugins": [{
-    "name": "agents-learning-system",
+    "name": "phil-ai-learning",
     "source": "./"
   }]
 }
@@ -222,8 +222,8 @@ agents-learning-system/
 
 2. Install for testing:
 ```bash
-/plugin marketplace add /path/to/agents-learning-system
-/plugin install agents-learning-system@dev
+/plugin marketplace add /path/to/phil-ai-learning
+/plugin install phil-ai-learning@dev
 ```
 
 3. Restart Claude Code and test commands
@@ -234,4 +234,4 @@ MIT License
 
 ## Repository
 
-https://github.com/pjbeyer/agents-learning-system
+https://github.com/pjbeyer/phil-ai-learning

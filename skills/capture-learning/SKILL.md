@@ -111,7 +111,7 @@ Based on the learning content, choose appropriate category from configuration.
 
 **Load priorities from config**:
 ```bash
-cat /Users/pjbeyer/.claude/plugins/cache/agents-learning-system/config/storage-structure.json | grep -A 20 '"priorities"'
+cat /Users/pjbeyer/.claude/plugins/cache/phil-ai-learning/config/storage-structure.json | grep -A 20 '"priorities"'
 ```
 
 #### 6a. Ask: Priority
