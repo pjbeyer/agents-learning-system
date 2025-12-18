@@ -19,19 +19,19 @@ Use the `find-learnings.sh` script to discover all learning files:
 
 ```bash
 # Find all unimplemented learnings (most common)
-/Users/pjbeyer/.claude/plugins/cache/learning-system/scripts/find-learnings.sh --unimplemented
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --unimplemented
 
 # Show summary statistics
-/Users/pjbeyer/.claude/plugins/cache/learning-system/scripts/find-learnings.sh --summary
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --summary
 
 # List all learning files
-/Users/pjbeyer/.claude/plugins/cache/learning-system/scripts/find-learnings.sh --list
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --list
 
 # Count by category
-/Users/pjbeyer/.claude/plugins/cache/learning-system/scripts/find-learnings.sh --count
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --count
 
 # Get JSON output
-/Users/pjbeyer/.claude/plugins/cache/learning-system/scripts/find-learnings.sh --json
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --json
 ```
 
 **Script features**:

@@ -1,6 +1,6 @@
 {
   "name": "phil-ai-learning",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Capture, track, and implement learnings with hierarchical storage and closed-loop tracking across profiles",
   "author": {
     "name": "Phil Beyer",

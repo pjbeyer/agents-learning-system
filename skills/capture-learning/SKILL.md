@@ -49,7 +49,7 @@ Load the storage structure configuration:
 
 ```bash
 # Configuration location
-cat /Users/pjbeyer/.claude/plugins/cache/learning-system/config/storage-structure.json
+cat ${CLAUDE_PLUGIN_ROOT}/config/storage-structure.json
 ```
 
 **Expected structure**:
@@ -111,7 +111,7 @@ Based on the learning content, choose appropriate category from configuration.
 
 **Load priorities from config**:
 ```bash
-cat /Users/pjbeyer/.claude/plugins/cache/phil-ai-learning/config/storage-structure.json | grep -A 20 '"priorities"'
+cat ${CLAUDE_PLUGIN_ROOT}/config/storage-structure.json | grep -A 20 '"priorities"'
 ```
 
 #### 6a. Ask: Priority

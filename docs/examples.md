@@ -137,17 +137,17 @@ Common: Notion MCP usage patterns
 
 **Find unimplemented learnings**:
 ```bash
-/Users/pjbeyer/.claude/plugins/cache/phil-ai-learning/scripts/find-learnings.sh --unimplemented
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --unimplemented
 ```
 
 **Get summary**:
 ```bash
-/Users/pjbeyer/.claude/plugins/cache/phil-ai-learning/scripts/find-learnings.sh --summary
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --summary
 ```
 
 **JSON output for automation**:
 ```bash
-/Users/pjbeyer/.claude/plugins/cache/phil-ai-learning/scripts/find-learnings.sh --json
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --json
 ```
 
 ## Example 6: Quarterly Cross-Profile Review

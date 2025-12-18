@@ -132,23 +132,25 @@ The date format is **mandatory** and must match the regex: `^## ✅ CLOSED LOOP 
 
 Robust script for finding and analyzing learning files.
 
-**Usage**:
+**Usage** (within skill contexts, use `${CLAUDE_PLUGIN_ROOT}`):
 ```bash
 # Show summary statistics
-find-learnings.sh --summary
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --summary
 
 # List unimplemented learnings
-find-learnings.sh --unimplemented
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --unimplemented
 
 # List all learnings
-find-learnings.sh --list
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --list
 
 # Count by category
-find-learnings.sh --count
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --count
 
 # JSON output
-find-learnings.sh --json
+${CLAUDE_PLUGIN_ROOT}/scripts/find-learnings.sh --json
 ```
+
+> **Note**: Claude Code automatically expands `${CLAUDE_PLUGIN_ROOT}` to the plugin's installation path at runtime. Always use this variable in skill files instead of hardcoded paths to ensure portability.
 
 **Features**:
 - Searches across all profiles
