@@ -2,6 +2,10 @@
 #
 # find-learnings.sh - Robust script to find all learning files across profiles
 #
+# Searches both profile-level and project-level learning directories:
+#   - Profile: ~/Projects/{profile}/.workflow/docs/continuous-improvement/learnings/
+#   - Project: ~/Projects/work/{project}/docs/continuous-improvement/learnings/
+#
 # Usage:
 #   ./find-learnings.sh [OPTIONS]
 #
@@ -43,6 +47,36 @@ declare -A PROFILE_DIRS=(
     ["play"]="$BASE_DIR/play/.workflow/docs/continuous-improvement/learnings"
     ["home"]="$BASE_DIR/home/.workflow/docs/continuous-improvement/learnings"
 )
+
+# Dynamically discover work project-level learning directories
+# These are projects within ~/Projects/work/ that have their own learnings
+declare -a WORK_PROJECT_NAMES=()
+declare -A WORK_PROJECT_DIRS=()
+
+discover_work_projects() {
+    local work_dir="$BASE_DIR/work"
+    if [ -d "$work_dir" ]; then
+        # Find all project directories with learnings (excluding .workflow which is profile-level)
+        while IFS= read -r learnings_dir; do
+            if [ -n "$learnings_dir" ]; then
+                # Extract project name from path like /Users/.../work/manager-agents/docs/...
+                local project_path="${learnings_dir#$work_dir/}"
+                local project_name="${project_path%%/*}"
+
+                # Skip if it's the .workflow directory (profile-level)
+                if [ "$project_name" != ".workflow" ]; then
+                    # Create a display name like "work/manager-agents"
+                    local display_name="work/$project_name"
+                    WORK_PROJECT_NAMES+=("$display_name")
+                    WORK_PROJECT_DIRS["$display_name"]="$learnings_dir"
+                fi
+            fi
+        done < <(find "$work_dir" -type d -path "*/docs/continuous-improvement/learnings" 2>/dev/null | sort -u)
+    fi
+}
+
+# Run discovery
+discover_work_projects
 
 # Default options
 MODE="summary"
@@ -121,17 +155,30 @@ declare -A FILE_COUNTS
 declare -A IMPLEMENTED_COUNTS
 declare -A UNIMPLEMENTED_COUNTS
 
+# Combined list of all sources (profiles + work projects)
+ALL_SOURCES=("${PROFILE_NAMES[@]}" "${WORK_PROJECT_NAMES[@]}")
+
+# Function to get directory for a source
+get_source_dir() {
+    local source="$1"
+    if [[ -v PROFILE_DIRS[$source] ]]; then
+        echo "${PROFILE_DIRS[$source]}"
+    elif [[ -v WORK_PROJECT_DIRS[$source] ]]; then
+        echo "${WORK_PROJECT_DIRS[$source]}"
+    fi
+}
+
 # Initialize all counts to 0
-for profile in "${PROFILE_NAMES[@]}"; do
-    FILE_COUNTS[$profile]=0
-    IMPLEMENTED_COUNTS[$profile]=0
-    UNIMPLEMENTED_COUNTS[$profile]=0
+for source in "${ALL_SOURCES[@]}"; do
+    FILE_COUNTS[$source]=0
+    IMPLEMENTED_COUNTS[$source]=0
+    UNIMPLEMENTED_COUNTS[$source]=0
 done
 
-for profile in "${PROFILE_NAMES[@]}"; do
-    dir="${PROFILE_DIRS[$profile]}"
+for source in "${ALL_SOURCES[@]}"; do
+    dir=$(get_source_dir "$source")
 
-    if [ ! -d "$dir" ]; then
+    if [ -z "$dir" ] || [ ! -d "$dir" ]; then
         continue
     fi
 
@@ -144,7 +191,7 @@ for profile in "${PROFILE_NAMES[@]}"; do
     while IFS= read -r file; do
         if [ -n "$file" ]; then
             total=$((total + 1))
-            ALL_FILES["$profile|$file"]="1"
+            ALL_FILES["$source|$file"]="1"
 
             if has_closed_loop "$file"; then
                 implemented=$((implemented + 1))
@@ -154,9 +201,9 @@ for profile in "${PROFILE_NAMES[@]}"; do
         fi
     done <<< "$files"
 
-    FILE_COUNTS[$profile]=$total
-    IMPLEMENTED_COUNTS[$profile]=$implemented
-    UNIMPLEMENTED_COUNTS[$profile]=$unimplemented
+    FILE_COUNTS[$source]=$total
+    IMPLEMENTED_COUNTS[$source]=$implemented
+    UNIMPLEMENTED_COUNTS[$source]=$unimplemented
 done
 
 # Output functions
@@ -167,14 +214,19 @@ output_summary() {
     local grand_total=0
     local grand_implemented=0
     local grand_unimplemented=0
+    local profile_total=0
+    local project_total=0
 
+    # First show profile-level summaries
+    echo "--- Profile Level ---"
     for profile in "${PROFILE_NAMES[@]}"; do
         local total=${FILE_COUNTS[$profile]}
         local implemented=${IMPLEMENTED_COUNTS[$profile]}
         local unimplemented=${UNIMPLEMENTED_COUNTS[$profile]}
-        local dir="${PROFILE_DIRS[$profile]}"
+        local dir=$(get_source_dir "$profile")
 
         grand_total=$((grand_total + total))
+        profile_total=$((profile_total + total))
         grand_implemented=$((grand_implemented + implemented))
         grand_unimplemented=$((grand_unimplemented + unimplemented))
 
@@ -185,21 +237,45 @@ output_summary() {
         fi
     done
 
+    # Then show project-level summaries if any exist
+    if [ ${#WORK_PROJECT_NAMES[@]} -gt 0 ]; then
+        echo ""
+        echo "--- Project Level (work) ---"
+        for project in "${WORK_PROJECT_NAMES[@]}"; do
+            local total=${FILE_COUNTS[$project]}
+            local implemented=${IMPLEMENTED_COUNTS[$project]}
+            local unimplemented=${UNIMPLEMENTED_COUNTS[$project]}
+            local dir=$(get_source_dir "$project")
+
+            grand_total=$((grand_total + total))
+            project_total=$((project_total + total))
+            grand_implemented=$((grand_implemented + implemented))
+            grand_unimplemented=$((grand_unimplemented + unimplemented))
+
+            if [ -d "$dir" ]; then
+                echo "$project: $total files ($implemented implemented, $unimplemented unimplemented)"
+            fi
+        done
+    fi
+
     echo ""
     echo "Total: $grand_total files ($grand_implemented implemented, $grand_unimplemented unimplemented)"
+    if [ $project_total -gt 0 ]; then
+        echo "  (Profile: $profile_total, Project: $project_total)"
+    fi
 }
 
 output_list() {
     local filter="$1"  # "all", "implemented", or "unimplemented"
 
-    for profile in "${PROFILE_NAMES[@]}"; do
-        local dir="${PROFILE_DIRS[$profile]}"
+    for source in "${ALL_SOURCES[@]}"; do
+        local dir=$(get_source_dir "$source")
 
-        if [ ! -d "$dir" ]; then
+        if [ -z "$dir" ] || [ ! -d "$dir" ]; then
             continue
         fi
 
-        echo "=== $profile ==="
+        echo "=== $source ==="
 
         local files=$(find_learning_files "$dir")
         local found=false
@@ -239,14 +315,14 @@ output_count() {
     echo "=== Learning Files by Category ==="
     echo ""
 
-    for profile in "${PROFILE_NAMES[@]}"; do
-        local dir="${PROFILE_DIRS[$profile]}"
+    for source in "${ALL_SOURCES[@]}"; do
+        local dir=$(get_source_dir "$source")
 
-        if [ ! -d "$dir" ]; then
+        if [ -z "$dir" ] || [ ! -d "$dir" ]; then
             continue
         fi
 
-        echo "--- $profile ---"
+        echo "--- $source ---"
 
         declare -A category_counts
 
@@ -279,10 +355,10 @@ output_json() {
     local implemented=0
     local unimplemented=0
 
-    for profile in "${PROFILE_NAMES[@]}"; do
-        total=$((total + FILE_COUNTS[$profile]))
-        implemented=$((implemented + IMPLEMENTED_COUNTS[$profile]))
-        unimplemented=$((unimplemented + UNIMPLEMENTED_COUNTS[$profile]))
+    for source in "${ALL_SOURCES[@]}"; do
+        total=$((total + FILE_COUNTS[$source]))
+        implemented=$((implemented + IMPLEMENTED_COUNTS[$source]))
+        unimplemented=$((unimplemented + UNIMPLEMENTED_COUNTS[$source]))
     done
 
     echo "{"
@@ -291,25 +367,25 @@ output_json() {
     echo "    \"implemented\": $implemented,"
     echo "    \"unimplemented\": $unimplemented"
     echo "  },"
-    echo "  \"profiles\": {"
+    echo "  \"sources\": {"
 
-    local first_profile=true
-    for profile in "${PROFILE_NAMES[@]}"; do
-        local dir="${PROFILE_DIRS[$profile]}"
+    local first_source=true
+    for source in "${ALL_SOURCES[@]}"; do
+        local dir=$(get_source_dir "$source")
 
-        if [ "$first_profile" = true ]; then
-            first_profile=false
+        if [ "$first_source" = true ]; then
+            first_source=false
         else
             echo ","
         fi
 
-        echo -n "    \"$profile\": {"
-        echo -n "\"total\": ${FILE_COUNTS[$profile]},"
-        echo -n "\"implemented\": ${IMPLEMENTED_COUNTS[$profile]},"
-        echo -n "\"unimplemented\": ${UNIMPLEMENTED_COUNTS[$profile]},"
+        echo -n "    \"$source\": {"
+        echo -n "\"total\": ${FILE_COUNTS[$source]},"
+        echo -n "\"implemented\": ${IMPLEMENTED_COUNTS[$source]},"
+        echo -n "\"unimplemented\": ${UNIMPLEMENTED_COUNTS[$source]},"
         echo -n "\"files\": ["
 
-        if [ -d "$dir" ]; then
+        if [ -n "$dir" ] && [ -d "$dir" ]; then
             local files=$(find_learning_files "$dir")
             local first_file=true
 
